@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} 
+    <h1 class="display-1"> Lista de Professores</h1>
+    <br>
+    <br>
+{% endblock %}
+
+{% block content %}
+
+    <table class="table table-hover table-bordered table-sm caption-top">        
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>               
+            <th scope="col">Idade</th>            
+          </tr>
+        </thead>
+        <tbody>
+           {% for i in professores %}  
+                <tr>
+                    <th> {{ i.nome }} </th>
+                    <th> {{ i.email }} </th>
+                    <th> {{ i.idade }} </th>
+                    <th> <a href="{% url 'atualiza_professores' i.id %}" class="link-primary">Editar </a>  </th> <!-- Link para edição -->
+                    <th> <a href="{% url 'deleta_professores' i.id %}" class="text-danger">Excluir</a> </th>                   
+                </tr> 
+            {% endfor %}          
+        </tbody>
+    <a href="{% url 'cria_professores' %}">Criar novo cadastro</a>  
+    <br>
+    <br>
+    <a href="{% url 'index' %}">Voltar para Index</a>
+
+{% endblock %}

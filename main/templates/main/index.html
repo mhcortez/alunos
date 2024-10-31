@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} 
+    <h1 class="display-1"> Página INDEX</h1>
+    <br>
+    <br>
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'lista_professores' %}" >Cadastro de Professores</a>  
+    <br>
+    <br>
+    <a href="{% url 'lista_alunos' %}">Cadastro de Alunos</a>
+
+{% endblock %}
