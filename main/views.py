@@ -1,10 +1,14 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Estudante, Professor
 from django.shortcuts import get_object_or_404
 
+
+@login_required
 def index(request):
     return render(request, 'main/index.html')
 
+@login_required
 def lista_professores(request):
     professores = Professor.objects.all()
     return render(request, 'main/lista_professores.html', {'professores': professores})
