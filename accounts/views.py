@@ -48,7 +48,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('index')
         else:
             messages.error(request, 'Usuário ou senha inválidos')
             return render(request, 'registration/login.html')
