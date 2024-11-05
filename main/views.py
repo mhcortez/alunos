@@ -47,15 +47,18 @@ def lista_alunos(request):
     return render(request, 'main/lista_alunos.html', {'alunos': alunos})
 
 def cria_alunos(request):
+    professores = Professor.objects.all()
     if request.method == 'POST':
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         idade = request.POST.get('idade')
-        professor = request.POST.get('professor')
+        professor = int(request.POST.get('professor'))
+        professor = Professor.objects.get(id=professor)
+        print(type(professor))
         if nome and email and idade:
-            Estudante.objects.create(nome=nome, email=email, idade=idade)
+            Estudante.objects.create(nome=nome, email=email, idade=idade , professor=professor)
             return redirect('lista_alunos')
-    return render(request, 'main/cria_alunos.html')
+    return render(request, 'main/cria_alunos.html' , {'professores': professores})
 
 def atualiza_alunos(request, id):
     estudante = Estudante.objects.get(id=id)
